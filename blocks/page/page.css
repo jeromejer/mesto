@@ -1,0 +1,13 @@
+.page {
+    background: #000000;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    color: #FFFFFF;
+    font-style: normal;
+    width: 100%;
+    height: 100%;
+}

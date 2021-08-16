@@ -1,0 +1,8 @@
+.element__like {
+  border: none;
+  cursor: pointer;
+  background: none;
+  width: 19px;
+  height: 22px;
+  padding: 0;
+}

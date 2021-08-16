@@ -1,0 +1,11 @@
+.profile__line {
+  display: flex;
+}
+
+@media screen and (max-width: 670px) {
+  .profile__line{
+    margin-top: 22.25px;
+    align-items: center;
+    position: relative;
+  }
+}

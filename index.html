@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Mesto</title>
+</head>
+
+<body>
+    <div class="page">
+        <header class="header">
+            <a href="#"><img src="./images/logo.svg" alt="Логотип Mesto" class="header__logo"></a>
+            <p class="header__line"></p>
+        </header>
+
+        <section class="profile">
+            <div class="profile__avatar">
+                <img src="./images/image_avatar.png" alt="Аватар">
+            </div>
+            <div class="profile__info">
+                <div class="profile__description">
+                    <div class="profile__line">
+                        <h1 class="profile__name">Жак-Ив Кусто</h1>
+                        <button class="profile__edit">
+                            <img src="./images/edit.svg" alt="Иконка редактирования профиля">
+                        </button>
+                    </div>
+                    <p class="profile__job">Исследователь океана</p>
+                </div>
+                <div class="profile__btn">
+                    <button class="profile__add-button">
+                        <img src="./images/add.svg" alt="Иконка добавления карточки места">
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <div class="popup">
+            <div class="popup__overlay"></div>
+            <div class="popup__container">
+                <div class="popup__form">
+                    <button class="popup__close">
+                        <img src="./images/CloseIcon.svg" alt="" class="popup__close-img">
+                    </button>
+                    <form class="form">
+                        <p class="form__title">Редактировать профиль</p>
+                        <input type="text" class="form__text form__text_name">
+                        <input type="text" class="form__text form__text_job">
+                        <button type="submit" class="form__submit">Сохранить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <section class="elements">
+            <div class="element">
+                <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Фотография Карачаевска"
+                    class="element__img">
+                <div class="element__group">
+                    <p class="element__title">Карачаевск</p>
+                    <!--модификатор для активной кнопки лайка <button class="element__like element__like_active"> -->
+                    <button class="element__like">
+                        <img src="./images/like.svg" alt="Иконка сердечка" class="element__like-img">
+                        <img src="./images/like-active.svg" alt="Иконка сердечка" class="element__like-img_active">
+                        <!--когда element__like_active активен, то element__like-img_active имеет дисплей блок, а element__like-img дисплей none-->
+                    </button>
+                </div>
+            </div>
+            <div class="element">
+                <img src="./images/Elbrus.jpg" alt="Фотография Горы Эльбрус" class="element__img">
+                <div class="element__group">
+                    <p class="element__title">Гора Эльбрус</p>
+                    <button class="element__like">
+                        <img src="./images/like.svg" alt="Иконка сердечка" class="element__like-img">
+                        <img src="./images/like-active.svg" alt="Иконка сердечка" class="element__like-img_active">
+                    </button>
+                </div>
+            </div>
+            <div class="element">
+                <img src="./images/Dombay.jpg" alt="Фотография Домбая" class="element__img">
+                <div class="element__group">
+                    <p class="element__title">Домбай</p>
+                    <button class="element__like">
+                        <img src="./images/like.svg" alt="Иконка сердечка" class="element__like-img">
+                        <img src="./images/like-active.svg" alt="Иконка сердечка" class="element__like-img_active">
+                    </button>
+                </div>
+            </div>
+            <div class="element">
+                <img src="./images/Arhyz.jpg" alt="Фотография села Архыз" class="element__img">
+                <div class="element__group">
+                    <p class="element__title">Архыз</p>
+                    <button class="element__like">
+                        <img src="./images/like.svg" alt="Иконка сердечка" class="element__like-img">
+                        <img src="./images/like-active.svg" alt="Иконка сердечка" class="element__like-img_active">
+                    </button>
+                </div>
+            </div>
+            <div class="element">
+                <img src="./images/Kabardinka.jpg" alt="Фотография Кабардино-Балкарской Республики"
+                    class="element__img">
+                <div class="element__group">
+                    <p class="element__title">Кабардино-Балкария</p>
+                    <button class="element__like">
+                        <img src="./images/like.svg" alt="Иконка сердечка" class="element__like-img">
+                        <img src="./images/like-active.svg" alt="Иконка сердечка" class="element__like-img_active">
+                    </button>
+                </div>
+            </div>
+            <div class="element">
+                <img src="./images/photo-1623323650038-2368bcf1652b.jpg"
+                    alt="Фотография Горы-кольцо в Ставропольском крае" class="element__img">
+                <div class="element__group">
+                    <p class="element__title">Гора кольцо, Ставропольский край</p>
+                    <button class="element__like">
+                        <img src="./images/like.svg" alt="Иконка сердечка" class="element__like-img">
+                        <img src="./images/like-active.svg" alt="Иконка сердечка" class="element__like-img_active">
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+        </footer>
+
+    </div>
+    <script src="./scripts/script.js"></script>
+</body>
+
+</html>
