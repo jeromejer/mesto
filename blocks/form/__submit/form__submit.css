@@ -7,6 +7,9 @@
   color: #FFFFFF;
   padding: 0;
   margin-top: 48px;
+  font-size: 18px;
+  line-height: 22px;
+  transition: 0.2s;
 }
 
 .form__submit:hover {
@@ -16,5 +19,11 @@
 
 @media screen and (max-width: 588px) {
   .form__submit {
-    margin-top: 46px;
-  }
+    margin-top: 45px;
+    font-size: 14px;
+    line-height: 17px;
+    width: 238px;
+    height: 46px;
+    margin-bottom: 25px;
+}
+}

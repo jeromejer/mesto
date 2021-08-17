@@ -12,5 +12,8 @@
   .form__title {
     font-size: 18px;
     line-height: 22px;
-    margin-bottom: 58px;
-  }
+    margin-top: 25px;
+    margin-bottom: 45px;
+    text-align: center;
+}
+}

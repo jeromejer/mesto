@@ -1,7 +1,11 @@
-.element__like_active .element__like-img {
-  display: none;
-}
-
-.element__like_active .element__like-img_active {
-  display: block;
+.element__like_active {
+  border: none;
+  cursor: pointer;
+  background: none;
+  width: 24px;
+  height: 19px;
+  padding: 0;
+  background-image: url('../../../../images/like-active.svg');
+  background-repeat: no-repeat;
+  background-position: center;
 }

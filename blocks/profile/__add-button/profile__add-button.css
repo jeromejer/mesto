@@ -4,7 +4,11 @@
   background: none;
   border: 2px solid #FFFFFF;
   border-radius: 2px;
-  margin: auto 0;
+  margin: auto 0 auto auto;
+  background-image: url('../../../images/add.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: 0.2s;
 }
 
 .profile__add-button:hover {
@@ -14,7 +18,9 @@
 
 @media screen and (max-width: 670px) {
   .profile__add-button {
-    height: 50px;
     width: 100%;
+    width: 282px;
+    margin: 36px auto 0;
+    justify-content: center;
   }
 }

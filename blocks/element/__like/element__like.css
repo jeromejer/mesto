@@ -2,7 +2,11 @@
   border: none;
   cursor: pointer;
   background: none;
-  width: 19px;
-  height: 22px;
+  width: 24px;
+  height: 19px;
   padding: 0;
+  background-image: url('../../../images/like.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  display: block;
 }

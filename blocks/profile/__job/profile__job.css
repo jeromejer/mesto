@@ -11,5 +11,9 @@
     line-height: 17px;
     text-align: center;
     margin-top: 14px;
+    text-overflow: ellipsis;
+    max-width: 190px;
+    overflow: hidden;
+    white-space: nowrap;
   }
 }
