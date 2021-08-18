@@ -8,6 +8,7 @@
   background-image: url('../../../images/add.svg');
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 22px;
   transition: 0.2s;
 }
 
@@ -18,9 +19,9 @@
 
 @media screen and (max-width: 670px) {
   .profile__add-button {
-    width: 100%;
     width: 282px;
     margin: 36px auto 0;
     justify-content: center;
+    background-size: 16px;
   }
 }

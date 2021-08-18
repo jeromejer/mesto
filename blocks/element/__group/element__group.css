@@ -1,7 +1,7 @@
 .element__group {
   display: flex;
   max-width: 246px;
-  margin: auto;
+  margin: 25px auto;
   justify-content: space-between;
   align-items: center;
   width: 100%;

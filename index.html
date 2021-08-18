@@ -20,7 +20,7 @@
                     <div class="profile__description">
                         <div class="profile__line">
                             <h1 class="profile__name">Жак-Ив Кусто</h1>
-                            <button type="button" class="profile__edit">
+                            <button type="button" class="profile__edit" aria-label="Кнопка редактирования профиля">
                             </button>
                         </div>
                         <p class="profile__job">Исследователь океана</p>
@@ -34,10 +34,10 @@
                 <div class="popup__container">
                     <button type="button" class="popup__close">
                     </button>
-                    <form class="form" name="form">
-                        <h3 class="form__title">Редактировать профиль</h3>
-                        <input type="text" class="form__text" name="text_name">
-                        <input type="text" class="form__text" name="text_job">
+                    <form class="form" name="form-edit">
+                        <h2 class="form__title">Редактировать профиль</h2>
+                        <input type="text" class="form__text" name="text_name" placeholder="Введите имя" required>
+                        <input type="text" class="form__text" name="text_job" placeholder="Введите профессию" required>
                         <button type="submit" class="form__submit">Сохранить</button>
                     </form>
                 </div>

@@ -9,4 +9,9 @@
   background-repeat: no-repeat;
   background-position: center;
   display: block;
+  transition: .2s;
+}
+
+.element__like:hover {
+  opacity: 0.5;
 }
