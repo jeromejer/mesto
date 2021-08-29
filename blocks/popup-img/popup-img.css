@@ -1,0 +1,13 @@
+.popup-img {
+  width: 100%;
+    top: 0;
+    align-items: center;
+    height: 100%;
+    position: fixed;
+    display: flex;
+    background: rgb(0 0 0 / 90%);
+    z-index: 2;
+    visibility: hidden;
+  opacity: 0;
+  transition: visibility .3s, opacity 0.3s linear;
+}

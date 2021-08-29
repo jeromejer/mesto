@@ -30,7 +30,7 @@
                 </div>
             </section>
 
-            <div class="popup">
+            <div class="popup editProfile">
                 <div class="popup__container">
                     <button type="button" class="popup__close">
                     </button>
@@ -43,67 +43,61 @@
                 </div>
             </div>
 
+            <div class="popup addCard">
+                <div class="popup__container">
+                    <button type="button" class="popup__close addCard__close">
+                    </button>
+                    <form class="form" name="form-addCard">
+                        <h2 class="form__title">Новое место</h2>
+                        <input type="text" class="form__text" name="card_title" placeholder="Название" required>
+                        <input type="text" class="form__text" name="card_link" placeholder="Ссылка на картинку"
+                            required>
+                        <button type="submit" class="form__submit">Создать</button>
+                    </form>
+                </div>
+            </div>
 
             <section class="elements">
-                <article class="element">
-                    <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Фотография Карачаевска"
-                        class="element__img">
-                    <div class="element__group">
-                        <h2 class="element__title">Карачаевск</h2>
-                        <!--модификатор для активной кнопки лайка <button class="element__like element__like_active"> -->
-                        <button type="button" class="element__like">
-                        </button>
-                    </div>
-                </article>
-                <article class="element">
-                    <img src="./images/Elbrus.jpg" alt="Фотография Горы Эльбрус" class="element__img">
-                    <div class="element__group">
-                        <h2 class="element__title">Гора Эльбрус</h2>
-                        <button type="button" class="element__like">
-                        </button>
-                    </div>
-                </article>
-                <article class="element">
-                    <img src="./images/Dombay.jpg" alt="Фотография Домбая" class="element__img">
-                    <div class="element__group">
-                        <h2 class="element__title">Домбай</h2>
-                        <button type="button" class="element__like">
-                        </button>
-                    </div>
-                </article>
-                <article class="element">
-                    <img src="./images/Arhyz.jpg" alt="Фотография села Архыз" class="element__img">
-                    <div class="element__group">
-                        <h2 class="element__title">Архыз</h2>
-                        <button type="button" class="element__like">
-                        </button>
-                    </div>
-                </article>
-                <article class="element">
-                    <img src="./images/Kabardinka.jpg" alt="Фотография Кабардино-Балкарской Республики"
-                        class="element__img">
-                    <div class="element__group">
-                        <h2 class="element__title">Кабардино-Балкария</h2>
-                        <button type="button" class="element__like">
-                        </button>
-                    </div>
-                </article>
-                <article class="element">
-                    <img src="./images/photo-1623323650038-2368bcf1652b.jpg"
-                        alt="Фотография Горы-кольцо в Ставропольском крае" class="element__img">
-                    <div class="element__group">
-                        <h2 class="element__title">Гора кольцо, Ставропольский край</h2>
-                        <button type="button" class="element__like element__like_active">
-                        </button>
-                    </div>
-                </article>
+
             </section>
+
+            <div class="popup-img">
+                <div class="popup-img__container">
+                    <div class="popup-img__content">
+                        <button type="button" class="popup-img__close">
+                        </button>
+                        <figure class="popup-img__figure">
+
+                            <img src="" class="popup-img__img">
+                            <figcaption>
+                                <p class="popup-img__title"></p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+
+
         </main>
         <footer class="footer">
             <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
 
     </div>
+
+    <template id="element-template">
+        <article class="element">
+            <img src="" alt="" class="element__img" title="">
+            <button type="button" class="element__dlt">
+            </button>
+            <div class="element__group">
+                <h2 class="element__title"></h2>
+                <!--модификатор для активной кнопки лайка <button class="element__like element__like_active"> -->
+                <button type="button" class="element__like">
+                </button>
+            </div>
+        </article>
+    </template>
     <script src="./scripts/script.js"></script>
 </body>
 
