@@ -56,15 +56,18 @@ function formSubmitHandler(evt) {
 
 //передача данных из формы
 formElement.addEventListener('submit', formSubmitHandler);
-//открытие попапа редактирования профиля
-openBtn.addEventListener('click', function (){
-  popupOpen(modal, editProfileModalOpenCB)
-});
-//закрытие попапа редактирования профиля
-closeBtn.addEventListener('click', function (){
-  popupClose(modal);
-});
 
+//открытие попапа редактирования профиля
+function popupOpenEditProfile (){
+  popupOpen(modal, editProfileModalOpenCB);
+}
+openBtn.addEventListener('click', popupOpenEditProfile);
+
+//закрытие попапа редактирования профиля
+function popupCloseEditProfile(){
+  popupClose(modal);
+}
+closeBtn.addEventListener('click', popupCloseEditProfile);
 
 //добавление новых карточек
 const initialCards = [
@@ -94,20 +97,6 @@ const initialCards = [
   }
 ]; 
 
-//функция открытия картинки
-function openModalImg(src, title) {
-  imgModalOpen.classList.add('popup-img_open');
-  popupImg.src = src;
-  popupImgTitle.textContent = title;  
-}
-
-//функция закрывает модалку картинки
-function modalImgClose() {
-  imgModalOpen.classList.remove('popup-img_open');
-}
-
-popupImgClose.addEventListener('click', modalImgClose);
-
 //функция добавления карточки
 function addCard(name, link) {
   const element = elementTemplate.querySelector('.element').cloneNode(true);
@@ -115,14 +104,23 @@ function addCard(name, link) {
   img.src = link;
   img.alt = `Фотография ${name}`;
   img.title = name;
-  img.addEventListener('click', function (evt) {
-    const openImg = evt.target
-    openModalImg(openImg.src, openImg.title);
+
+  //функция колбэк для открытия картинки
+  function openModalImgCB (){
+    popupImg.src = img.src;
+    popupImgTitle.textContent = img.title; 
+  }
+  
+  img.addEventListener('click', function popupOpenImg () {
+    popupOpen(imgModalOpen, openModalImgCB)
   })
   
   element.querySelector('.element__title').textContent = name;
+
+  //добавление карточки
   elements.append(element);
 
+  //обработчик лайков
   element.querySelector('.element__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like_active');
   });
@@ -134,8 +132,13 @@ function addCard(name, link) {
     elementItem.remove();
   }); 
 
-  
 }
+
+//закрытие картинки
+function popupCloseImg() {
+  popupClose(imgModalOpen);
+}
+popupImgClose.addEventListener('click', popupCloseImg);
 
 initialCards.forEach(item => {
   addCard(item.name, item.link, item.alt);
@@ -156,14 +159,19 @@ function formSubmitAddCard(evt) {
   popupClose(modalAddCard);
 }
 
+
+
 //передача данных из формы добавления карточки
 formAddCard.addEventListener('submit', formSubmitAddCard);
-//открытие попапа добавления новой карточки
-btnAddCard.addEventListener('click', function(){
-  popupOpen(modalAddCard, clearValueCard)
-});
-//закрытие попапа добавления новой карточки
-closeAddCard.addEventListener('click', function(){
-  popupClose(modalAddCard);
-});
 
+//открытие попапа добавления новой карточки
+function popupOpenAddCard(){
+  popupOpen(modalAddCard, clearValueCard)
+}
+btnAddCard.addEventListener('click', popupOpenAddCard);
+
+//закрытие попапа добавления новой карточки
+function popupCloseAddCard(){
+  popupClose(modalAddCard);
+}
+closeAddCard.addEventListener('click', popupCloseAddCard);
