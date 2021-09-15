@@ -20,6 +20,7 @@ const imgModalOpen = document.querySelector('.popup-img');
 const popupImg = document.querySelector('.popup-img__img');
 const popupImgTitle = document.querySelector('.popup-img__title');
 const popupImgClose = document.querySelector('.popup-img__close');
+const cardSubmit = document.querySelector('[name="submit_card"]');
 
 
 
@@ -31,18 +32,32 @@ function popupOpen (popup, cb) {
   }
 }
 
-
 //функция закрывает popup
 function popupClose (popup) {
   popup.classList.remove('popup_open')
 }
 
+//функция закрытия popup по нажатию Esc
+document.addEventListener('keydown', function (evt) {
+  let modal = document.querySelector('.popup_open')
+  if (evt.key == "Escape") {
+    popupClose(modal);
+  }
+})
+
+//функция закрытия popup по overlay
+function popupOverlay(evt) {
+  let popup = document.querySelector('.popup_open')
+  if (evt.target == popup) {
+    popupClose(popup);
+  }
+}
 
 //функция колбэк для открытия попапа редактирования формы
 //передает значения в форму
 function editProfileModalOpenCB() { 
   textName.value = profileName.textContent;
-  textJob.value = profileJob.textContent
+  textJob.value = profileJob.textContent;
 }
 
 //функция отправки формы редактирования профиля
@@ -63,11 +78,15 @@ function popupOpenEditProfile (){
 }
 openBtn.addEventListener('click', popupOpenEditProfile);
 
-//закрытие попапа редактирования профиля
+//закрытие попапа редактирования профиля по клику на кнопку закрытия
 function popupCloseEditProfile(){
   popupClose(modal);
 }
 closeBtn.addEventListener('click', popupCloseEditProfile);
+
+//закрытие попапа редактирования профиля по overlay
+modal.addEventListener('click', popupOverlay);
+
 
 //добавление новых карточек
 const initialCards = [
@@ -134,11 +153,16 @@ function addCard(name, link) {
 
 }
 
-//закрытие картинки
+//закрытие картинки по кнопке закрытия
 function popupCloseImg() {
   popupClose(imgModalOpen);
 }
 popupImgClose.addEventListener('click', popupCloseImg);
+
+//закрытие картинки по overlay
+imgModalOpen.addEventListener('click', popupOverlay);
+
+
 
 initialCards.forEach(item => {
   addCard(item.name, item.link, item.alt);
@@ -149,6 +173,8 @@ initialCards.forEach(item => {
 function clearValueCard () {
     cardTitle.value = '';
     cardLink.value = '';
+    cardSubmit.setAttribute('disabled', true);
+    cardSubmit.classList.add('form__submit_disabled');
 };
 
 
@@ -175,3 +201,6 @@ function popupCloseAddCard(){
   popupClose(modalAddCard);
 }
 closeAddCard.addEventListener('click', popupCloseAddCard);
+
+//закрытие попапа добавления новой карточки по overlay
+modalAddCard.addEventListener('click', popupOverlay);

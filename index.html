@@ -34,10 +34,14 @@
                 <div class="popup__container">
                     <button type="button" class="popup__close">
                     </button>
-                    <form class="form" name="form-edit">
+                    <form class="form" name="form-edit" novalidate>
                         <h2 class="form__title">Редактировать профиль</h2>
-                        <input type="text" class="form__text" name="text_name" placeholder="Введите имя" required>
-                        <input type="text" class="form__text" name="text_job" placeholder="Введите профессию" required>
+                        <input type="text" class="form__text" name="text_name" placeholder="Введите имя" required
+                            minlength="2" maxlength="40">
+                        <span class="form__error" id="text_name-error"></span>
+                        <input type="text" class="form__text" name="text_job" placeholder="Введите профессию" required
+                            minlength="2" maxlength="200">
+                        <span class="form__error" id="text_job-error"></span>
                         <button type="submit" class="form__submit">Сохранить</button>
                     </form>
                 </div>
@@ -47,12 +51,14 @@
                 <div class="popup__container">
                     <button type="button" class="popup__close addCard__close">
                     </button>
-                    <form class="form" name="form-addCard">
+                    <form class="form" name="form-addCard" novalidate>
                         <h2 class="form__title">Новое место</h2>
-                        <input type="text" class="form__text" name="card_title" placeholder="Название" required>
-                        <input type="text" class="form__text" name="card_link" placeholder="Ссылка на картинку"
-                            required>
-                        <button type="submit" class="form__submit">Создать</button>
+                        <input type="text" class="form__text" name="card_title" placeholder="Название" required
+                            minlength="2" maxlength="30">
+                        <span class="form__error" id="card_title-error"></span>
+                        <input type="url" class="form__text" name="card_link" placeholder="Ссылка на картинку" required>
+                        <span class="form__error" id="card_link-error"></span>
+                        <button type="submit" name="submit_card" class="form__submit">Создать</button>
                     </form>
                 </div>
             </div>
@@ -99,6 +105,7 @@
         </article>
     </template>
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 
 </html>
