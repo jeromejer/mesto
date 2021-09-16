@@ -4,22 +4,22 @@ const objForm = {
   submitBtnSelector: '.form__submit',
   errorTextClass: 'form__error_active',
   errorInputClass: 'form__text_error',
-  formSubmit: 'form__submit_disabled'
+  formSubmitClassDisabled: 'form__submit_disabled'
 }
 
 enableValidation(objForm);
 
 
-function enableValidation({ formSelector, inputSelector, submitBtnSelector, errorTextClass, errorInputClass, formSubmit }) {
+function enableValidation({ formSelector, inputSelector, submitBtnSelector, errorTextClass, errorInputClass, formSubmitClassDisabled }) {
   const forms = Array.from(document.querySelectorAll(formSelector));
   forms.forEach(form => {
-    validateForm(form, inputSelector, submitBtnSelector, errorTextClass, errorInputClass, formSubmit)
+    validateForm(form, inputSelector, submitBtnSelector, errorTextClass, errorInputClass, formSubmitClassDisabled)
   });
 }
 
 //если инпут валидирован, сообщение об ошибке убирается
-function inputValid(input, errorTextClass, errorInputClass) {
-  const inputName = input.getAttribute('name');
+function hideValidInputError(input, errorTextClass, errorInputClass) {
+  const inputName = input.name;
   const errorPlace = document.getElementById(`${inputName}-error`);
   errorPlace.textContent = '';
   errorPlace.classList.remove(errorTextClass);
@@ -27,7 +27,7 @@ function inputValid(input, errorTextClass, errorInputClass) {
 }
 
 //если инпут не прошел валидацию, появляется сообщение об ошибке
-function inputInValid(input, errorTextClass, errorInputClass) {
+function showValidInputError(input, errorTextClass, errorInputClass) {
   const inputName = input.getAttribute('name');
   const errorPlace = document.getElementById(`${inputName}-error`);
   errorPlace.textContent = input.validationMessage;
@@ -38,45 +38,46 @@ function inputInValid(input, errorTextClass, errorInputClass) {
 //функция валидации инпутов
 function validateInput(input, errorTextClass, errorInputClass) {
   if (input.validity.valid) {
-      inputValid(input, errorTextClass, errorInputClass);
+    hideValidInputError(input, errorTextClass, errorInputClass);
 
   } else {
-      inputInValid(input, errorTextClass, errorInputClass);
+    showValidInputError(input, errorTextClass, errorInputClass);
   }
 }
 
 
 //функция наложения валидаций на все формы 
-function validateForm(form, inputSelector, submitBtnSelector, errorTextClass, errorInputClass, formSubmit) {
+function validateForm(form, inputSelector, submitBtnSelector, errorTextClass, errorInputClass, formSubmitClassDisabled) {
   form.addEventListener('submit', (evt) => evt.preventDefault())
 
   const inputs = Array.from(form.querySelectorAll(inputSelector));
-  const submitBtn = form.querySelector(submitBtnSelector)
 
   inputs.forEach(input => {
-      input.addEventListener('input', () => {
-          validateInput(input, errorTextClass, errorInputClass);
+    input.addEventListener('input', () => {
+      validateInput(input, errorTextClass, errorInputClass);
 
-          const formValid = validateSubmit(inputs);
-          submitBtnStatus(submitBtn, formValid, formSubmit)
-      })
+      submitBtnStatus(form, inputSelector, submitBtnSelector, formSubmitClassDisabled)
+    })
   })
 }
 
 //функция валидации формы
 function validateSubmit(inputs) {
-  return inputs.every(function(input) {
-      return input.validity.valid
+  return inputs.every(function (input) {
+    return input.validity.valid
   })
 }
 
 //функция делает кнопку неактивной 
-function submitBtnStatus(submitBtn, formValid, formSubmit) {
-  if (formValid) {
-      submitBtn.removeAttribute('disabled');
-      submitBtn.classList.remove(formSubmit);
+function submitBtnStatus(form, inputSelector, submitBtnSelector, formSubmitClassDisabled) {
+  const inputs = Array.from(form.querySelectorAll(inputSelector));
+  const submitBtn = form.querySelector(submitBtnSelector)
+
+  if (validateSubmit(inputs)) {
+    submitBtn.removeAttribute('disabled');
+    submitBtn.classList.remove(formSubmitClassDisabled);
   } else {
-      submitBtn.setAttribute('disabled', true);
-      submitBtn.classList.add(formSubmit);
+    submitBtn.setAttribute('disabled', true);
+    submitBtn.classList.add(formSubmitClassDisabled);
   }
 }
