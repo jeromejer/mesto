@@ -8,11 +8,11 @@ const openBtnPopupEditProfile = document.querySelector('.profile__edit');
 const closeBtnPopupEditProfile = popupEditProfile.querySelector('.popup__close');
 const container = document.querySelector('.elements');
 const elementTemplate = document.querySelector('#element-template').content;
-const modalAddCard = document.querySelector('.popup.addCard');
+const modalAddCard = document.querySelector('[name="add_card"]');
 const btnAddCard = document.querySelector('.profile__add-button');
 const cardTitle = document.querySelector('[name="card_title"]');
 const cardLink = document.querySelector('[name="card_link"]');
-const closeAddCard = document.querySelector('.addCard__close');
+const closeAddCard = document.querySelector('[name="add_card_close"]');
 const formAddCard = document.querySelector('[name="form-addCard"]')
 const popupImg = document.querySelector('.popup-img');
 const popupImgImage = document.querySelector('.popup-img__img');
@@ -46,7 +46,7 @@ function closePopupEsc(evt) {
 //функция закрытия popup по overlay
 function closePopupOverlay(evt) {
   if (evt.target == evt.currentTarget) {
-    const popup = document.querySelector('.popup_open');
+    const popup = evt.target;
     closePopup(popup);
   }
 }
@@ -119,6 +119,7 @@ const initialCards = [
 //функция передает значения при открытии картинки
 function passValueModalImg(img) {
   popupImgImage.src = img.src;
+  popupImgImage.alt = img.alt;
   popupImgTitle.textContent = img.title;
 }
 
@@ -182,10 +183,8 @@ initialCards.forEach(item => {
 
 //функция очищения полей формы добавления карточки
 function clearValueCard() {
-  cardTitle.value = '';
-  cardLink.value = '';
-  cardSubmitBtn.setAttribute('disabled', true);
-  cardSubmitBtn.classList.add('form__submit_disabled');
+  formAddCard.reset();
+  submiClassBtnDisabled(formAddCard, '.form__submit', 'form__submit_disabled');
 };
 
 

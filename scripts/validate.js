@@ -7,6 +7,7 @@ const objForm = {
   formSubmitClassDisabled: 'form__submit_disabled'
 }
 
+
 enableValidation(objForm);
 
 
@@ -17,8 +18,10 @@ function enableValidation({ formSelector, inputSelector, submitBtnSelector, erro
   });
 }
 
+
+
 //если инпут валидирован, сообщение об ошибке убирается
-function hideValidInputError(input, errorTextClass, errorInputClass) {
+function hideInputError(input, errorTextClass, errorInputClass) {
   const inputName = input.name;
   const errorPlace = document.getElementById(`${inputName}-error`);
   errorPlace.textContent = '';
@@ -27,7 +30,7 @@ function hideValidInputError(input, errorTextClass, errorInputClass) {
 }
 
 //если инпут не прошел валидацию, появляется сообщение об ошибке
-function showValidInputError(input, errorTextClass, errorInputClass) {
+function showInputError(input, errorTextClass, errorInputClass) {
   const inputName = input.getAttribute('name');
   const errorPlace = document.getElementById(`${inputName}-error`);
   errorPlace.textContent = input.validationMessage;
@@ -38,46 +41,70 @@ function showValidInputError(input, errorTextClass, errorInputClass) {
 //функция валидации инпутов
 function validateInput(input, errorTextClass, errorInputClass) {
   if (input.validity.valid) {
-    hideValidInputError(input, errorTextClass, errorInputClass);
+    hideInputError(input, errorTextClass, errorInputClass);
 
   } else {
-    showValidInputError(input, errorTextClass, errorInputClass);
+    showInputError(input, errorTextClass, errorInputClass);
   }
 }
 
+//функция находит все инпуты в форме
+function searchInputsForm(form, inputSelector) {
+  return Array.from(form.querySelectorAll(inputSelector));
+}
+
+//функция находит кнопку в форме 
+function searchBtnForm(form, submitBtnSelector) {
+  return form.querySelector(submitBtnSelector)
+}
 
 //функция наложения валидаций на все формы 
 function validateForm(form, inputSelector, submitBtnSelector, errorTextClass, errorInputClass, formSubmitClassDisabled) {
   form.addEventListener('submit', (evt) => evt.preventDefault())
 
-  const inputs = Array.from(form.querySelectorAll(inputSelector));
+  const inputs = searchInputsForm(form, inputSelector);
 
   inputs.forEach(input => {
     input.addEventListener('input', () => {
       validateInput(input, errorTextClass, errorInputClass);
 
-      submitBtnStatus(form, inputSelector, submitBtnSelector, formSubmitClassDisabled)
+      toggleButtonStatus(form, inputSelector, submitBtnSelector, formSubmitClassDisabled);
     })
   })
 }
 
 //функция валидации формы
-function validateSubmit(inputs) {
+function hasInvalidInput(inputs) {
   return inputs.every(function (input) {
     return input.validity.valid
   })
 }
 
-//функция делает кнопку неактивной 
-function submitBtnStatus(form, inputSelector, submitBtnSelector, formSubmitClassDisabled) {
-  const inputs = Array.from(form.querySelectorAll(inputSelector));
-  const submitBtn = form.querySelector(submitBtnSelector)
 
-  if (validateSubmit(inputs)) {
-    submitBtn.removeAttribute('disabled');
-    submitBtn.classList.remove(formSubmitClassDisabled);
+
+//функция делает кнопку неактивной
+function submiClassBtnDisabled(form, submitBtnSelector, formSubmitClassDisabled) {
+  const submitBtn = form.querySelector(submitBtnSelector)
+  submitBtn.setAttribute('disabled', true);
+  submitBtn.classList.add(formSubmitClassDisabled);
+}
+
+//функция удаляет класс неактивной кнопки и делает ее активной
+function submitRemoveClassBtnDisabled(form, submitBtnSelector, formSubmitClassDisabled) {
+  const submitBtn = form.querySelector(submitBtnSelector);
+  submitBtn.removeAttribute('disabled');
+  submitBtn.classList.remove(formSubmitClassDisabled);
+}
+
+
+
+//функция делает кнопку активной или неактивной 
+function toggleButtonStatus(form, inputSelector, submitBtnSelector, formSubmitClassDisabled) {
+  const inputs = searchInputsForm(form, inputSelector);
+  if (hasInvalidInput(inputs)) {
+    submitRemoveClassBtnDisabled(form, submitBtnSelector, formSubmitClassDisabled);
   } else {
-    submitBtn.setAttribute('disabled', true);
-    submitBtn.classList.add(formSubmitClassDisabled);
+    submiClassBtnDisabled(form, submitBtnSelector, formSubmitClassDisabled);
   }
 }
+
