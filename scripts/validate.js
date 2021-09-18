@@ -83,14 +83,14 @@ function hasInvalidInput(inputs) {
 
 
 //функция делает кнопку неактивной
-function submiClassBtnDisabled(form, submitBtnSelector, formSubmitClassDisabled) {
+function disableSubmitButton(form, submitBtnSelector, formSubmitClassDisabled) {
   const submitBtn = form.querySelector(submitBtnSelector)
   submitBtn.setAttribute('disabled', true);
   submitBtn.classList.add(formSubmitClassDisabled);
 }
 
 //функция удаляет класс неактивной кнопки и делает ее активной
-function submitRemoveClassBtnDisabled(form, submitBtnSelector, formSubmitClassDisabled) {
+function enableSubmitButton(form, submitBtnSelector, formSubmitClassDisabled) {
   const submitBtn = form.querySelector(submitBtnSelector);
   submitBtn.removeAttribute('disabled');
   submitBtn.classList.remove(formSubmitClassDisabled);
@@ -102,9 +102,9 @@ function submitRemoveClassBtnDisabled(form, submitBtnSelector, formSubmitClassDi
 function toggleButtonStatus(form, inputSelector, submitBtnSelector, formSubmitClassDisabled) {
   const inputs = searchInputsForm(form, inputSelector);
   if (hasInvalidInput(inputs)) {
-    submitRemoveClassBtnDisabled(form, submitBtnSelector, formSubmitClassDisabled);
+    enableSubmitButton(form, submitBtnSelector, formSubmitClassDisabled);
   } else {
-    submiClassBtnDisabled(form, submitBtnSelector, formSubmitClassDisabled);
+    disableSubmitButton(form, submitBtnSelector, formSubmitClassDisabled);
   }
 }
 

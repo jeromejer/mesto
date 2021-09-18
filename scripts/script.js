@@ -13,7 +13,7 @@ const btnAddCard = document.querySelector('.profile__add-button');
 const cardTitle = document.querySelector('[name="card_title"]');
 const cardLink = document.querySelector('[name="card_link"]');
 const closeAddCard = document.querySelector('[name="add_card_close"]');
-const formAddCard = document.querySelector('[name="form-addCard"]')
+const formAddCard = document.querySelector('[name="form-add-сard"]')
 const popupImg = document.querySelector('.popup-img');
 const popupImgImage = document.querySelector('.popup-img__img');
 const popupImgTitle = document.querySelector('.popup-img__title');
