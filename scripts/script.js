@@ -14,16 +14,18 @@ const cardTitle = document.querySelector('[name="card_title"]');
 const cardLink = document.querySelector('[name="card_link"]');
 const closeAddCard = document.querySelector('[name="add_card_close"]');
 const formAddCard = document.querySelector('[name="form-add-сard"]')
-const popupImg = document.querySelector('.popup-img');
-const popupImgImage = document.querySelector('.popup-img__img');
-const popupImgTitle = document.querySelector('.popup-img__title');
+export const popupImg = document.querySelector('.popup-img');
+export const popupImgImage = document.querySelector('.popup-img__img');
+export const popupImgTitle = document.querySelector('.popup-img__title');
 const popupImgClose = document.querySelector('.popup-img__close');
-const cardSubmitBtn = document.querySelector('[name="submit_card"]');
+import Card from "./Сard.js";
+import FormValidator from "./FormValidator.js";
+
 
 
 
 //функция открывает popup
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add('popup_open');
   document.addEventListener('keydown', closePopupEsc);
 }
@@ -86,7 +88,7 @@ closeBtnPopupEditProfile.addEventListener('click', closePopupEditProfile);
 popupEditProfile.addEventListener('click', closePopupOverlay);
 
 
-//добавление новых карточек
+//данные новых карточек
 const initialCards = [
   {
     name: 'Архыз',
@@ -116,53 +118,16 @@ const initialCards = [
 
 
 
-//функция передает значения при открытии картинки
-function passValueModalImg(img) {
-  popupImgImage.src = img.src;
-  popupImgImage.alt = img.alt;
-  popupImgTitle.textContent = img.title;
-}
-
-
-//функция создания карточки
-function createCard(name, link) {
-  const element = elementTemplate.querySelector('.element').cloneNode(true);
-  const img = element.querySelector('.element__img');
-  img.src = link;
-  img.alt = `Фотография ${name}`;
-  img.title = name;
-
-  element.querySelector('.element__title').textContent = name;
-
-  //обработчик лайков
-  element.querySelector('.element__like').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__like_active');
-  });
-
-  //открытие картинки
-  img.addEventListener('click', function popupOpenImg(evt) {
-    openPopup(popupImg);
-    passValueModalImg(evt.target);
-  })
-
-  //удаление карточки
-  const deleteElement = element.querySelector('.element__dlt');
-  deleteElement.addEventListener('click', function (evt) {
-    const elementItem = evt.target.closest('.element');
-    elementItem.remove();
-  });
-
-  return element
-}
-
-
-
 //функция добавляет карточку в разметку
-function renderCard(name, link) {
-  const element = createCard(name, link);
+function renderCard(data) {
+  const card = new Card(data, '#element-template')
+  
+  const element = card.generateCard()
   container.prepend(element);
 }
 
+//создаем карточки в разметке 
+initialCards.forEach(renderCard)
 
 
 //закрытие картинки по кнопке закрытия
@@ -176,22 +141,21 @@ popupImg.addEventListener('click', closePopupOverlay);
 
 
 
-initialCards.forEach(item => {
-  renderCard(item.name, item.link, item.alt);
-});
-
-
 //функция очищения полей формы добавления карточки
 function clearValueCard() {
   formAddCard.reset();
-  submiClassBtnDisabled(formAddCard, '.form__submit', 'form__submit_disabled');
+  formAddCardValidator._submiClassBtnDisabled();
 };
 
 
 //функция отправки формы добавления карточки
 function submitFormAddCard(evt) {
   evt.preventDefault();
-  renderCard(cardTitle.value, cardLink.value);
+  const data = {
+    name: cardTitle.value, 
+    link: cardLink.value
+  }
+  renderCard(data);
   closePopup(modalAddCard);
 }
 
@@ -215,3 +179,24 @@ closeAddCard.addEventListener('click', closePopupAddCard);
 
 //закрытие попапа добавления новой карточки по overlay
 modalAddCard.addEventListener('click', closePopupOverlay);
+
+
+
+
+//элементы валидации формы
+const objForm = {
+  formSelector: '.form',
+  inputSelector: '.form__text',
+  submitBtnSelector: '.form__submit',
+  errorTextClass: 'form__error_active',
+  errorInputClass: 'form__text_error',
+  formSubmitClassDisabled: 'form__submit_disabled'
+}
+
+//валидация формы редактирования профиля
+const formEditValidator = new FormValidator(objForm, formEditProfile)
+formEditValidator.enableValidation()
+
+//валидация формы добавления новой карточки
+const formAddCardValidator = new FormValidator(objForm, formAddCard)
+formAddCardValidator.enableValidation()

@@ -34,7 +34,7 @@
                 <div class="popup__container">
                     <button type="button" class="popup__close">
                     </button>
-                    <form class="form" name="form-edit" novalidate>
+                    <form class="form" name="form-edit" id="form-edit" novalidate>
                         <h2 class="form__title">Редактировать профиль</h2>
                         <input type="text" class="form__text" name="text_name" placeholder="Введите имя" required
                             minlength="2" maxlength="40">
@@ -51,7 +51,7 @@
                 <div class="popup__container">
                     <button type="button" class="popup__close" name="add_card_close">
                     </button>
-                    <form class="form" name="form-add-сard" novalidate>
+                    <form class="form" name="form-add-сard" id="form-add-сard" novalidate>
                         <h2 class="form__title">Новое место</h2>
                         <input type="text" class="form__text" name="card_title" placeholder="Название" required
                             minlength="2" maxlength="30">
@@ -103,8 +103,9 @@
             </div>
         </article>
     </template>
-    <script src="./scripts/script.js"></script>
-    <script src="./scripts/validate.js"></script>
+    <script type="module" src="./scripts/script.js"></script>
+    <script type="module" src="./scripts/FormValidator.js"></script>
+    <script type="module" src="./scripts/Сard.js"></script>
 </body>
 
 </html>
