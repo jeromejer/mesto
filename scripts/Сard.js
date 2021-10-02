@@ -55,6 +55,7 @@ export default class Card {
     }
 
 
+
     generateCard() {
         //создаем карточку из шаблона
         this._element = this._getTemplate();

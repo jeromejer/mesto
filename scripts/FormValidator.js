@@ -1,27 +1,32 @@
 export default class FormValidator {
-    constructor(obj, formElement) {
+  constructor(obj, formElement) {
 
-        this._formSelector = obj.formSelector;
-        this._inputSelector = obj.inputSelector;
-        this._submitBtnSelector = obj.submitBtnSelector;
-        this._errorTextClass = obj.errorTextClass;
-        this._errorInputClass = obj.errorInputClass;
-        this._formSubmitClassDisabled = obj.formSubmitClassDisabled;
-        this._formElement = formElement;
-    }
+    this._formSelector = obj.formSelector;
+    this._inputSelector = obj.inputSelector;
+    this._submitBtnSelector = obj.submitBtnSelector;
+    this._errorTextClass = obj.errorTextClass;
+    this._errorInputClass = obj.errorInputClass;
+    this._formSubmitClassDisabled = obj.formSubmitClassDisabled;
+    this._formElement = formElement;
+
+    this._inputs = this._searchInputsForm();
+    this._submitBtn =  this._searchBtnForm(); 
+  }
 
 
 
-//если инпут не прошел валидацию, появляется сообщение об ошибке
-_showInputError(input) {
+  //если инпут не прошел валидацию, появляется сообщение об ошибке
+  _showInputError(input) {
     const inputName = input.getAttribute('name');
     const errorPlace = document.getElementById(`${inputName}-error`);
     errorPlace.textContent = input.validationMessage;
     errorPlace.classList.add(this._errorTextClass);
     input.classList.add(this._errorInputClass);
   }
-//если инпут валидирован, сообщение об ошибке убирается
-_hideInputError(input) {
+
+
+  //если инпут валидирован, сообщение об ошибке убирается
+  _hideInputError(input) {
     const inputName = input.name;
     const errorPlace = document.getElementById(`${inputName}-error`);
     errorPlace.textContent = '';
@@ -29,75 +34,83 @@ _hideInputError(input) {
     input.classList.remove(this._errorInputClass);
   }
 
+
+  //функция сброса ошибок с полей формы
+  resetValidation() {
+    this._toggleButtonStatus();
+
+    this._inputs.forEach((input) => {
+      this._hideInputError(input)
+    });
+    
+
+  }
+
   //функция валидации инпутов
-_validateInput(input) {
+  _validateInput(input) {
     if (input.validity.valid) {
       this._hideInputError(input);
-  
+
     } else {
       this._showInputError(input);
     }
   }
 
   //функция находит все инпуты в форме
-_searchInputsForm() {
+  _searchInputsForm() {
     return Array.from(this._formElement.querySelectorAll(this._inputSelector));
   }
 
   //функция находит кнопку в форме 
-_searchBtnForm() {
+  _searchBtnForm() {
     return this._formElement.querySelector(this._submitBtnSelector)
   }
 
   //функция наложения валидаций на все формы 
-_validateForm() {
+  _validateForm() {
     this._formElement.addEventListener('submit', (evt) => evt.preventDefault())
-  
-    const inputs = this._searchInputsForm(this._formElement);
-  
-    inputs.forEach(input => {
+
+
+    this._inputs.forEach(input => {
       input.addEventListener('input', () => {
         this._validateInput(input);
-  
-        this._toggleButtonStatus(this._formElement);
+
+        this._toggleButtonStatus();
       })
     })
   }
 
   //функция валидации формы
-_hasInvalidInput(inputs) {
-    return inputs.every(function (input) {
+  _hasInvalidInput() {
+    return this._inputs.every(function (input) {
       return input.validity.valid
     })
   }
 
   //функция делает кнопку неактивной
-_submiClassBtnDisabled() {
-    const submitBtn = this._formElement.querySelector(this._submitBtnSelector)
-    submitBtn.setAttribute('disabled', true);
-    submitBtn.classList.add(this._formSubmitClassDisabled);
+  _submiClassBtnDisabled() {
+    this._submitBtn.setAttribute('disabled', true);
+    this._submitBtn.classList.add(this._formSubmitClassDisabled);
   }
 
   //функция удаляет класс неактивной кнопки и делает ее активной
-_enableSubmitButton() {
-    const submitBtn = this._formElement.querySelector(this._submitBtnSelector);
-    submitBtn.removeAttribute('disabled');
-    submitBtn.classList.remove(this._formSubmitClassDisabled);
+  _enableSubmitButton() {
+    this._submitBtn.removeAttribute('disabled');
+    this._submitBtn.classList.remove(this._formSubmitClassDisabled);
   }
 
   //функция делает кнопку активной или неактивной 
-_toggleButtonStatus() {
-    const inputs = this._searchInputsForm(this._formElement);
-    if (this._hasInvalidInput(inputs)) {
-      this._enableSubmitButton(this._formElement);
+  _toggleButtonStatus() {
+    if (this._hasInvalidInput()) {
+      this._enableSubmitButton();
     } else {
-      this._submiClassBtnDisabled(this._formElement);
+      this._submiClassBtnDisabled();
     }
   }
 
 
-  enableValidation(){
-    this._validateForm(this._formElement)
+  enableValidation() {
+    this._validateForm();
   }
 
 
