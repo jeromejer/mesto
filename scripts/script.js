@@ -151,8 +151,8 @@ formAddCard.addEventListener('submit', submitFormAddCard);
 //открытие попапа добавления новой карточки
 function openPopupAddCard() {
   openPopup(modalAddCard);
-  formAddCardValidator.resetValidation()
   clearValueCard();
+  formAddCardValidator.resetValidation()
 }
 btnAddCard.addEventListener('click', openPopupAddCard);
 
