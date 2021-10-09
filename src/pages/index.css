@@ -12,7 +12,7 @@
 
 /*ОШИБКА В ЭТОМ ФАЙЛЕ, ЕСЛИ ЕГО ЗАКОМЕЕНТИРОВАИТЬ, ОШИБКА ПРОПАДАЕТ
 ОСТАЛЬНЫЕ ФАЙЛЫ ЗАКОММЕНТИРОВАНЫ ПО ЭТОЙ ЖЕ ПРИЧИНЕ*/
-@import url("../blocks/profile/__edit/profile__edit.css");
+/*@import url("../blocks/profile/__edit/profile__edit.css");*/
 
 
 @import url("../blocks/profile/__description/profile__description.css");
