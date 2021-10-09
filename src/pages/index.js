@@ -39,7 +39,7 @@ formEditValidator.enableValidation()
 //обработчик, который при открытии попапа редактирования профиля
 //передает инфо пльзователя со страницы в форму
 const openEditProfilePopupHandler = () => {
-  let data = userInfo.getUserInfo()
+  const data = userInfo.getUserInfo()
   for (let key in data) {
     popupWithFormEditProfile.form.elements[key].value = data[key]
   }
@@ -48,9 +48,6 @@ const openEditProfilePopupHandler = () => {
 }
 //слушатель клика по кнокпи редактирования профиля
 openBtnPopupEditProfile.addEventListener('click', openEditProfilePopupHandler)
-
-
-
 
 
 //-----создание новой карточки-----/
@@ -92,7 +89,7 @@ section.setItem();
 const popupWithFormCard = new PopupWithForm('#popupAddCard',
 
   ({ card_title, card_link }) => {
-    let data = {
+    const data = {
       name: card_title,
       link: card_link
     };
@@ -104,6 +101,8 @@ popupWithFormCard.setEventListeners()
 //валидация формы добавления новой карточки
 const formAddCardValidator = new FormValidator(objForm, popupWithFormCard.form)
 formAddCardValidator.enableValidation()
+
+const btnAddCard = document.querySelector('.profile__add-button');
 
 btnAddCard.addEventListener('click', () => {
   formAddCardValidator.resetValidation();

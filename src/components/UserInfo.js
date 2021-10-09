@@ -6,7 +6,7 @@ export default class UserInfo {
 
     //метод возвращает объект с данными пользователя
     getUserInfo() {
-        let dataUser = {};
+        const dataUser = {};
         dataUser.text_name = this._userName.textContent;
         dataUser.text_job = this._userJob.textContent;
         return dataUser;

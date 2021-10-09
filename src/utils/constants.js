@@ -1,5 +1,4 @@
 const openBtnPopupEditProfile = document.querySelector('.profile__edit');
-const btnAddCard = document.querySelector('.profile__add-button');
 const popupImg = document.querySelector('.popup-img');
 const popupImgImage = document.querySelector('.popup-img__img');
 const popupImgTitle = document.querySelector('.popup-img__title');
