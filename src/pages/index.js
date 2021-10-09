@@ -1,6 +1,5 @@
 import {
   openBtnPopupEditProfile,
-  btnAddCard,
   objForm,
   initialCards
 } from "../utils/constants.js"

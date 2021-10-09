@@ -51,7 +51,6 @@ const initialCards = [
 
  export {
      openBtnPopupEditProfile, 
-     btnAddCard, 
      popupImg,
      popupImgImage,
      popupImgTitle,
