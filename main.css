@@ -27,8 +27,8 @@
 .popup__container{align-items:center;background:#fff;border-radius:10px;box-shadow:0 0 25px rgb(0 0 0/15%);display:flex;justify-content:center;margin:auto;max-width:430px;position:relative;width:100%}@media screen and (max-width:588px){.popup__container{max-width:282px;padding:0}}
 .popup_open{opacity:1;visibility:visible}
 .popup__close{background:none;background-image:url(images/CloseIcon.2ceb783afbab75916ddc.svg);background-position:50%;background-repeat:no-repeat;background-size:32px;border:none;cursor:pointer;display:flex;height:32px;justify-content:flex-end;margin:0;padding:0;position:absolute;right:-40px;top:-40px;transition:.2s;width:32px}.popup__close:hover{opacity:.6}@media screen and (max-width:588px){.popup__close{background-size:20px;height:20px;right:0;top:-36px;width:20px}}
-.popup__content{width:100%}
-.popup__submit{width:100%}
+.popup__content{margin:36px;width:100%}
+.popup__submit{background:#000;border:none;border-radius:2px;color:#fff;font-size:18px;height:50px;line-height:22px;margin-top:48px;padding:0;transition:.2s;width:100%}.popup__submit:hover{cursor:pointer;opacity:.8}@media screen and (max-width:588px){.popup__submit{font-size:14px;height:46px;line-height:17px;margin-bottom:25px;margin-top:45px;width:238px}}
 .popup__title{color:#000;font-size:24px;font-weight:900;line-height:29px;margin:0 0 28px;padding:0}
 .form{box-sizing:border-box;padding:34px 36px 37px}@media screen and (max-width:588px){.form{max-width:238px;padding:0}}
 .form__text{border:none;border-bottom:1px solid rgba(0,0,0,.2);box-sizing:border-box;color:#000;font-size:14px;height:40px;line-height:17px;margin-top:12.1px;outline:none;padding:0;width:100%}@media screen and (max-width:588px){.form__text{margin:17.2px 0 0}}
