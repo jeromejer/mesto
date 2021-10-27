@@ -14,7 +14,9 @@
         </header>
         <main>
             <section class="profile">
-                <img src="<%=require('./images/image_avatar.png')%>" alt="Аватар" class="profile__avatar-img">
+                <picture class="profile__avatar">
+                    <img alt="Аватар" class="profile__avatar-img">
+                </picture>
                 <div class="profile__info">
                     <div class="profile__description">
                         <div class="profile__line">
@@ -46,7 +48,7 @@
                 </div>
             </div>
 
-            <div class="popup"  id="popupAddCard" name="add_card">
+            <div class="popup" id="popupAddCard" name="add_card">
                 <div class="popup__container">
                     <button type="button" class="popup__close" name="add_card_close">
                     </button>
@@ -82,6 +84,31 @@
                 </div>
             </div>
 
+            <div class="popup" id="popupDltCard" name="dlt_card">
+                <div class="popup__container">
+                    <button type="button" class="popup__close" name="add_card_close">
+                    </button>
+                    <div class="popup__content">
+                        <p class="popup__title">Вы уверены?</p>
+
+                        <button type="submit" name="submit_card" class="popup__submit">Да</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="popup" id="popupUpdateAvatar" name="update_avatar">
+                <div class="popup__container">
+                    <button type="button" class="popup__close" name="add_update-avatar">
+                    </button>
+                    <form class="form" name="form-update-avatar" id="form-update-avatar" novalidate>
+                        <h2 class="form__title">Обновить аватар</h2>
+                        <input type="url" class="form__text" name="url_avatar" placeholder="Ссылка на аватар" required
+                            minlength="2">
+                        <span class="form__error" id="url_avatar-error"></span>
+                        <button type="submit" name="submit_card" class="form__submit">Сохранить</button>
+                    </form>
+                </div>
+            </div>
 
         </main>
         <footer class="footer">
@@ -97,8 +124,11 @@
             </button>
             <div class="element__group">
                 <h2 class="element__title"></h2>
-                <button type="button" class="element__like">
-                </button>
+                <div class="element__group-like">
+                    <button type="button" class="element__like">
+                    </button>
+                    <p class="element__number-likes">0</p>
+                </div>
             </div>
         </article>
     </template>

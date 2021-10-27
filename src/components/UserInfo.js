@@ -1,7 +1,9 @@
 export default class UserInfo {
-    constructor({ userName, userJob }) {
+    constructor({ userName, userJob, avatar }) {
         this._userName = document.querySelector(userName);
         this._userJob = document.querySelector(userJob);
+        this._avatar = document.querySelector(avatar)
+
     }
 
     //метод возвращает объект с данными пользователя
@@ -16,5 +18,9 @@ export default class UserInfo {
     setUserInfo({ text_name, text_job }) {
         this._userName.textContent = text_name;
         this._userJob.textContent = text_job;
+    }
+
+    setAvatar(url) {
+        this._avatar.src = url
     }
 }

@@ -5,6 +5,8 @@ export default class PopupWithForm extends Popup {
         this._cbFormSubmit = cbFormSubmit;
         this.form = this._popup.querySelector('.form');
         this._inputs = Array.from(this.form.querySelectorAll('.form__text'));
+        this._popupBtn = this._popup.querySelector('.form__submit');
+        this._popupBtnText = this._popupBtn.textContent;
     }
 
     //получаем данные из всех инпутов формы
@@ -30,5 +32,13 @@ export default class PopupWithForm extends Popup {
     close() {
         super.close();
         this.form.reset();
+    }
+
+    loading(isLoading, message = 'Сохранение...') {
+        if(isLoading) {
+            this._popupBtn.textContent = message
+        } else {
+            this._popupBtn.textContent = this._popupBtnText
+        }
     }
 }

@@ -1,22 +1,22 @@
 export default class Section {
-    constructor({ items, renderer }, containerSelector) {
-        this._items = items;
-        this._renderer = renderer;
+    constructor(render, containerSelector) {
+        this._renderer = render;
         this._container = document.querySelector(containerSelector);
     }
 
     //создаём карточки
     //метод, который отвечает за отрисовку всех элементов
-    setItem() {
-        this._items.forEach(item => {
+    setItems(list) {
+        list.forEach(item => {
             //отрисовка одного элемента
-            this.addItem(this._renderer(item));
+            this.addItem(item);
         })
     }
 
 
     //добавляем карточку в разметку
-    addItem(item) {
+    addItem(data) {
+        const item = this._renderer(data);
         this._container.prepend(item);
     }
 }

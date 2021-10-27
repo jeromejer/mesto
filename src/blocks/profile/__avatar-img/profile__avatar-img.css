@@ -4,6 +4,35 @@
   object-fit: cover;
   background: #C4C4C4;
   border-radius: 50%;
+  display: block;
+  position: relative;
+}
+
+.profile__avatar-img::after {
+  content: ''; 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0;
+  bottom: 0; 
+  background: rgba(0,0,0,.8);  
+  opacity: 0; 
+}
+
+.profile__avatar-img::before {
+  content: ''; 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0;
+  bottom: 0; 
+  background: url('/src/images/photoEdit.svg'); 
+  opacity: 0; 
+}
+
+
+.profile__avatar-img:hover:before, .profile__avatar-img:hover:after {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 670px) {
