@@ -102,8 +102,6 @@ function createCard(data) {
     handleCardClick,
     handleLike: () => {
       const status = card.getLikeStatus();
-
-
       if (status) {
         api.deleteLike(card.getCardId())
           .then((data) => {
@@ -115,8 +113,6 @@ function createCard(data) {
             card.setLikes(data.likes);
           })
       }
-
-
     },
     deleteHandler: () => {
       popupConfirmDelete.open(card);
