@@ -4,7 +4,7 @@
     cursor: pointer;
 }
 
-.profile__avatar::after {
+.profile__avatar:after {
     content: '';
     position: absolute;
     top: 0;
