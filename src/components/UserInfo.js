@@ -3,7 +3,6 @@ export default class UserInfo {
         this._userName = document.querySelector(userName);
         this._userJob = document.querySelector(userJob);
         this._avatar = document.querySelector(avatar)
-
     }
 
     //метод возвращает объект с данными пользователя
@@ -15,9 +14,9 @@ export default class UserInfo {
     }
 
     //метод принимает новые данные пользователя
-    setUserInfo({ text_name, text_job }) {
-        this._userName.textContent = text_name;
-        this._userJob.textContent = text_job;
+    setUserInfo({ textName, textJob}) {
+        this._userName.textContent = textName;
+        this._userJob.textContent = textJob;
     }
 
     setAvatar(url) {

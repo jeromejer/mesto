@@ -2,8 +2,7 @@ import {
   openBtnPopupEditProfile,
   objForm,
   initialCards,
-  avatarImg,
-  userId
+  avatarImg
 } from "../utils/constants.js"
 import Card from "../components/Сard.js";
 import FormValidator from "../components/FormValidator.js";
@@ -14,6 +13,10 @@ import UserInfo from "../components/UserInfo.js";
 import PopupDeleteCard from "../components/popupDeleteCard.js";
 import Api from "../components/Api.js";
 import "./index.css"
+
+let userId;
+
+
 
 //------------API------------/
 const api = new Api({
@@ -36,16 +39,25 @@ const userInfo = new UserInfo({
   avatar: '.profile__avatar-img'
 });
 
-api.getUserData()
-  .then((data) => {
-    const { name, about, avatar } = data
 
-    userInfo.setUserInfo({ text_name: name, text_job: about })
-    userInfo.setAvatar(avatar)
-  })
-  .catch((err) => {
-    console.log(err)
-  })
+
+
+Promise.all([api.getUserData(), api.getCardsData()])
+.then(([userData, cardsData]) => {
+  // user
+  const { name, about, avatar, _id } = userData
+  userInfo.setUserInfo({ textName: name, textJob: about})
+  userInfo.setAvatar(avatar)
+  userId = _id
+
+  // cards
+  section.setItems(cardsData)
+})
+.catch((err) => {
+  console.log(err)
+})
+
+
 
 //создаем попап формы редактирования профиля
 const popupWithFormEditProfile = new PopupWithForm('#popupEditProfile',
@@ -54,8 +66,8 @@ const popupWithFormEditProfile = new PopupWithForm('#popupEditProfile',
     api.updateUserData({ name: data.text_name, about: data.text_job })
       .then((data) => {
         const { name, about } = data
-
-        userInfo.setUserInfo({ text_name: name, text_job: about })
+        userInfo.setUserInfo({ textName: name, textJob: about })
+        popupWithFormEditProfile.close();
       })
       .catch((err) => {
         console.log(err)
@@ -107,10 +119,16 @@ function createCard(data) {
           .then((data) => {
             card.setLikes(data.likes);
           })
+          .catch((err) => {
+            console.log(err)
+          })
       } else {
         api.setLike(card.getCardId())
           .then((data) => {
             card.setLikes(data.likes);
+          })
+          .catch((err) => {
+            console.log(err)
           })
       }
     },
@@ -134,13 +152,6 @@ function renderCard(data) {
 
 const section = new Section(renderCard, '.elements');
 
-api.getCardsData()
-  .then((data) => {
-    section.setItems(data)
-  })
-  .catch((err) => {
-    console.log(err)
-  })
 
 
 //-----форма создания новой карточки-----/
@@ -153,12 +164,13 @@ const popupWithFormCard = new PopupWithForm('#popupAddCard',
     api.addCard({ name: data.card_title, link: data.card_link })
       .then((data) => {
         section.addItem(data)
+        popupWithFormCard.close();
       })
       .catch((err) => {
         console.log(err)
       })
       .finally(() => {
-        popupWithFormEditProfile.loading(false);
+        popupWithFormCard.loading(false);
       })
   });
 
@@ -202,12 +214,13 @@ const popupEditAvatar = new PopupWithForm('#popupUpdateAvatar', (data) => {
   api.updateAvatar(data.url_avatar)
     .then((data) => {
       avatarImg.src = data.avatar
+      popupEditAvatar.close()
     })
     .catch((err) => {
       console.log(err)
     })
     .finally(() => {
-      popupWithFormEditProfile.loading(false);
+      popupEditAvatar.loading(false);
     })
 }
 );

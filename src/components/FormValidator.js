@@ -18,7 +18,7 @@ export default class FormValidator {
   //если инпут не прошел валидацию, появляется сообщение об ошибке
   _showInputError(input) {
     const inputName = input.getAttribute('name');
-    const errorPlace = document.getElementById(`${inputName}-error`);
+    const errorPlace = this._formElement.querySelector(`#${inputName}-error`);
     errorPlace.textContent = input.validationMessage;
     errorPlace.classList.add(this._errorTextClass);
     input.classList.add(this._errorInputClass);
@@ -28,7 +28,7 @@ export default class FormValidator {
   //если инпут валидирован, сообщение об ошибке убирается
   _hideInputError(input) {
     const inputName = input.name;
-    const errorPlace = document.getElementById(`${inputName}-error`);
+    const errorPlace = this._formElement.querySelector(`#${inputName}-error`);
     errorPlace.textContent = '';
     errorPlace.classList.remove(this._errorTextClass);
     input.classList.remove(this._errorInputClass);

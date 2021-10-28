@@ -1,5 +1,3 @@
-import { userId } from "../utils/constants";
-
 export default class Card {
     constructor({ data, handleCardClick, deleteHandler, handleLike}, cardSelector, userId) {
         this._name = data.name;
@@ -59,11 +57,6 @@ export default class Card {
 
     }
 
-    //список лайков
-   /* listLikes(list) {
-        this._likesArray = list
-    }
-*/
     //удаление карточки
     deleteCard() {
         this._element.remove()
@@ -97,7 +90,6 @@ export default class Card {
         //лайк
         this._element.querySelector('.element__like').addEventListener('click', (evt) => {
             this._handleLike();
-            //this._like(evt)
         });
     }
 
@@ -126,8 +118,6 @@ export default class Card {
         this.setLikes(this._likesArray)
 
         this._element.querySelector('.element__title').textContent = this._name;
-
-        //this.likeNumber();
 
         //вызов слушателей 
         this._setEventListeners();

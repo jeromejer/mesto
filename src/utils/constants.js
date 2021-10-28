@@ -3,7 +3,6 @@ const popupImg = document.querySelector('.popup-img');
 const popupImgImage = document.querySelector('.popup-img__img');
 const popupImgTitle = document.querySelector('.popup-img__title');
 const avatarImg = document.querySelector('.profile__avatar-img');
-const userId = '7c5f5a71ef30c8a4628437be'
 
 //элементы валидации формы
 const objForm = {
@@ -58,7 +57,6 @@ const initialCards = [
      popupImgTitle,
      objForm,
      initialCards,
-     avatarImg, 
-     userId
+     avatarImg
 
 } 

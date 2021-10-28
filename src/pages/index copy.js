@@ -39,7 +39,7 @@ api.getUserData()
 .then((data) => {
   const {name, about, avatar} = data
   
-  userInfo.setUserInfo({text_name: name, text_job: about})
+  userInfo.setUserInfo({textName: name, textJob: about})
   userInfo.setAvatar(avatar)
 })
 .catch((err) => {
