@@ -16,7 +16,6 @@ export default class PopupDeleteCard extends Popup {
             
             evt.preventDefault();
             this._cbFormSubmit(evt, this._card);
-            this.close();
         })
     }
 
